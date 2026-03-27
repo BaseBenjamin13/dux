@@ -35,6 +35,10 @@ body {
   color: black;
 }
 .bg-default {
-  /* would be --background */
+
+  background-color: white;
+}
+.bg-background {
+
   background-color: white;
 }

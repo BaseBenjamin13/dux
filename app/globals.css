@@ -29,3 +29,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Login Tabs - changing :default colors */
+.text-default-500 {
+  color: black;
+}
+.bg-default {
+  /* would be --background */
+  background-color: white;
+}

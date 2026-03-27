@@ -42,9 +42,6 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
-        <Button>Test</Button>
-      </div>
     </div>
   );
 }

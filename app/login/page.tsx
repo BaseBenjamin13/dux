@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toast";
 import { useRouter } from "next/navigation";
 import { createUserProfile } from "@/utils/user/createUserProfile";
 import {Key} from '@react-types/shared';
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter()
@@ -18,7 +19,7 @@ export default function Home() {
   const [name, setName] = useState('')
   const [passwordErrors, setPasswordErrors] = useState<string[]>([])
   const [emailError, setEmailError] = useState('')
-  const [selected, setSelected] = useState<Key | null>("login");
+  const [selected, setSelected] = useState<Key | undefined>("login");
 
   const signin = async () => {
     try {
@@ -116,12 +117,20 @@ export default function Home() {
 
   return (
 
-     <div className="flex flex-col min-h-screen items-center pt-50 text-white bg-gray-950 font-sans text-lg">
-      <Card className="w-full md:w-100 p-3 items-center">
-        <Tabs aria-label="Options" selectedKey={selected} onSelectionChange={setSelected}>
+     <div className="flex flex-col min-h-screen items-center pt-50 bg-gray-950 font-sans text-lg">
+
+      <Card className="w-full md:w-100 p-3 items-center text-gray-950">
+        <div className="pb-2">
+          <Image src="/dux-logo.png" alt="Logo" width={100} height={100} className="ml-3 p-1" />
+        </div>
+        <Tabs aria-label="Options" selectedKey={selected} onSelectionChange={setSelected} 
+          className="font-bold *:data-[selected=true]:bg-red-500"
+        >
+
           <Tab key="login" title="Login" className="flex flex-col w-full items-left">
+
             <CardHeader className="flex justify-center gap-3">
-              <h1 className="text-xl font-bold">Login</h1>
+              <h1 className="text-xl font-bold ">Login</h1>
             </CardHeader>
             <CardBody>
               <div className="w-full">
@@ -129,7 +138,9 @@ export default function Home() {
                 {
                   emailError.length > 0 && <p className="text-[#F32660]">{emailError}</p>
                 }
-                <Input isRequired className="mt-5" color={passwordErrors.length == 0 ? "default" : "danger"} type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Input isRequired className="mt-5" color={passwordErrors.length == 0 ? "default" : "danger"} 
+                  type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} 
+                />
                 {
                   passwordErrors.length > 0 &&
                   passwordErrors.map((error, i) => {
